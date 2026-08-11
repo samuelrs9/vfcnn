@@ -1,0 +1,19 @@
+simulation_properties:
+  h: 0.006124
+  mass: 0.0125
+  dimensions: 2
+  limits:
+  - -0.05
+  - 1.65
+  - -0.05
+  - 2.05
+data:
+  sim_name: dambreak2d
+  frames_dir: frames
+  base_name: pdata.
+  extension: .csv
+  inicial_step: 0
+  final_step: 100
+  x_coord: Points:0
+  y_coord: Points:1
+  z_coord: Points:2

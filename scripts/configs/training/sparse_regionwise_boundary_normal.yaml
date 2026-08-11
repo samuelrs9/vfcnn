@@ -1,0 +1,43 @@
+tensorflow:
+  run_eagerly: true
+manager:
+  type: sparse_regionwise
+  tasks:
+    boundary:
+      type: classification
+      labels:
+      - interior
+      - boundary
+      outputs: 2
+    normal:
+      type: regression
+      outputs: 3
+  sim_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/ddb_3d_big_res
+  dataset_config_file: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/ddb_3d_big_res/sparse_regionwise_approach/datasets/dataset_100000_1.50_0.10_0/dataset_config.yaml
+model:
+  type: sparse_voxelized_fluid_cnn
+  architecture: v3_4
+  num_input_features: 1
+  grid_size:
+  - 2048
+  - 2048
+  - 2048
+  build_method: build_model_v1
+  summary: true
+  plot: true
+train_pipeline:
+  batch_size: 1
+  buffer_size_factor: 100
+  data_augmentation: false
+  debug_mode: false
+val_pipeline:
+  batch_size: 1
+  debug_mode: false
+jobs:
+- name: sparse_regionwise_boundary_normal
+  training:
+    method: custom_train_model_v2
+    train_id: v3_4_100000_1.50_0.10_0
+    num_epochs: 1000
+    learning_rate: 0.0005
+    device: cuda

@@ -1,0 +1,58 @@
+tensorflow:
+  gpu_memory_growth: true
+voxel_fluid:
+  tasks:
+    boundary:
+      type: classification
+      labels:
+      - interior
+      - boundary
+      outputs: 2
+    normal:
+      type: regression
+      outputs: 3
+  features:
+    occupancy: 1
+  approach: sparse_regionwise
+  search_radius: 1.5
+  grid_length: 0.1
+  enable_plot: false
+  coarse_prediction: null
+prediction:
+  batch_size: 100000
+  device: cuda
+  initial_step: -1
+  final_step: -1
+  skip_steps: 1
+  grid_offset: false
+  resolution_based_on_mean_distance: true
+  hdp: 1.73
+  extract_mesh: true
+jobs:
+- name: db_blocks_checkpoint_sweep
+  sim_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/db_blocks_3d_big_res/test
+  model_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/kfold3_hdp=1.73/sparse_regionwise_approach/models/model_sparse_voxelized_fluid_cnn_v3_4_100000_1.50_0.1_0_2_20240907
+  sim_config: sim_config_hdp=1.73.yaml
+  model_config: model_config_v2.yaml
+  predict_id: v3_4_100000_1.50_0.1_0_2_kfold3_no_coarse
+  pred_dir: predictions/kfold3_test_hdp=1.73_checkpoints/{checkpoint_name}
+  tuning:
+    type: checkpoints
+- name: inlet_vortex_checkpoint_sweep
+  sim_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/inlet_vortex_3d_big_res/test
+  model_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/kfold3_hdp=1.73/sparse_regionwise_approach/models/model_sparse_voxelized_fluid_cnn_v3_4_100000_1.50_0.1_0_1_20240907
+  sim_config: sim_config_hdp=1.73.yaml
+  model_config: model_config_v2.yaml
+  predict_id: v3_4_100000_1.50_0.1_0_1_kfold3_no_coarse
+  pred_dir: predictions/kfold3_test_hdp=1.73_checkpoints/{checkpoint_name}
+  tuning:
+    type: checkpoints
+- name: fountain_checkpoint_sweep
+  sim_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/fountain_3d_big_res/test
+  model_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/kfold3_hdp=1.73/sparse_regionwise_approach/models/model_sparse_voxelized_fluid_cnn_v3_4_100000_1.50_0.1_0_0_20240907
+  sim_config: sim_config_hdp=1.73.yaml
+  model_config: model_config_v2.yaml
+  predict_id: v3_4_100000_1.50_0.1_0_0_kfold3_no_coarse
+  pred_dir: predictions/kfold3_test_hdp=1.73_checkpoints/{checkpoint_name}
+  tuning:
+    type: checkpoints

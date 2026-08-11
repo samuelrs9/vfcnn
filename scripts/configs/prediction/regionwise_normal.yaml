@@ -1,0 +1,25 @@
+voxel_fluid:
+  tasks:
+    normal:
+      type: regression
+      outputs: 2
+  features:
+  - occupancy
+  approach: regionwise
+  search_radius: 2.0
+  image_size: 31
+  border_size: 9
+  enable_plot: false
+prediction:
+  batch_size: 512
+  device: cuda
+  initial_step: 0
+  final_step: -1
+  skip_steps: 1
+jobs:
+- name: regionwise_normal
+  sim_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/dambreak2d_alt_ressampled
+  model_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/dambreak2d/regionwise_approach/models/model_31_9_4.13_C4C4M2B_C8C8M2B_C16C16M2B_C32C32M2B_CT16B_CT8B_CT4B_CT2_C1_LN_3
+  sim_config: sim_config.yaml
+  model_config: model_config.yaml
+  predict_id: 3

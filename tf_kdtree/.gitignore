@@ -1,0 +1,6 @@
+src/*.o
+src/*.so
+src/build
+src/eigenlib
+*.pyc
+__pycache__

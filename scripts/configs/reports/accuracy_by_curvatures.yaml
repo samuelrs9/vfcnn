@@ -1,0 +1,12 @@
+sim_config_file: "/home/samuel/Projetos/data/paper/fluid_injectors_ressampled/sim_config.yaml"
+gt_config_file: "/home/samuel/Projetos/data/paper/fluid_injectors_ressampled/gt_config.yaml"
+pred_config_file: "/home/samuel/Projetos/data/paper/fluid_injectors_ressampled/regionwise_approach/predictions/pred_25_7_3.12_C4C4C4C4M2B_C8C8M2B_C16M2B_CT16B_CT8B_CT4B_C3_LN_1/pred_config.yaml"
+
+sections:
+  - "boundary"
+  - "boundary"
+
+report:
+  plot_metrics: true
+  print_metrics: true
+  return_metrics: false

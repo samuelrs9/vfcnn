@@ -1,0 +1,13 @@
+numpy==1.19.5
+Cython==0.29.36
+compyle==0.8.1
+cyarray==1.1
+pysph==1.0b1
+tensorflow==2.5.0
+tensorflow-addons==0.21.0
+tensorflow-graphics==2021.12.3
+open3d==0.15.2
+tensorflow-io==0.19.1
+plotly==5.11.0
+numba
+PyYAML

@@ -1,0 +1,34 @@
+manager:
+  type: regionwise
+  tasks:
+    boundary:
+      type: classification
+      labels:
+      - interior
+      - boundary
+      outputs: 2
+  sim_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/dambreak2d
+  dataset_config_file: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/dambreak2d/regionwise_approach/datasets/dataset_31_9_4.13_2/dataset_config.yaml
+model:
+  type: template
+  template: BRegionCNN2D.Models31().model_31_9_C4C4M2B_C8C8M2B_C16C16M2B_C32C32M2B_CT16B_CT8B_CT4B_CT2B_C1
+  pretrained_model_config_file: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/dambreak2d/pointwise_approach/models/model_31_4.13_C4C4M2B_C8C8M2B_C16C16M2B_C32C32M2B_D16B_D8B_D4B_D2_0/model_config.yaml
+  transfer_learning: true
+train_pipeline:
+  batch_size: 32
+  train_size: null
+  buffer_size_factor: 10
+  data_augmentation: true
+  debug_mode: false
+val_pipeline:
+  batch_size: 32
+  val_size: null
+  debug_mode: false
+jobs:
+- name: regionwise_boundary
+  training:
+    train_id: 0
+    num_epochs: 2
+    learning_rate: 0.001
+    device: cuda
+    debug_mode: null

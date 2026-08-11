@@ -1,0 +1,29 @@
+vfluid:
+  tasks:
+  - boundary
+  - normal
+  approach: sparse_regionwise
+  search_radius: 1.5
+  grid_length: 0.1
+  enable_plot: false
+build_dataset:
+  labels:
+  - interior
+  - boundary
+  based_on:
+  - boundary
+  initial_step: -1
+  final_step: -1
+  skip_steps: 5
+  batch_size: 10000
+  max_batches: -1
+jobs:
+- name: ddb_3d_big_res_fold0
+  vfluid:
+    data_config_file: /work1/voxel-fluid-net/data/3D/big/ddb_3d_big_res/sim_config_hdp=1.73.yaml
+  build_dataset:
+    gt_config_file: /work1/voxel-fluid-net/data/3D/big/ddb_3d_big_res/gt_config_hdp=1.73.yaml
+    dataset_id: 1
+    output_dir: /work1/voxel-fluid-net/data/3D/big/ddb_3d_big_res/sparse_regionwise_approach/datasets/kfold3_hdp=1.73/
+    resolution_based_on_mean_distance: true
+    hdp: 3.46

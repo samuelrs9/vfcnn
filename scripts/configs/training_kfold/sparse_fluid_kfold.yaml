@@ -1,0 +1,50 @@
+tensorflow:
+  run_eagerly: true
+manager:
+  type: sparse_regionwise
+  tasks:
+    boundary:
+      type: classification
+      labels:
+      - interior
+      - boundary
+      outputs: 2
+    normal:
+      type: regression
+      outputs: 3
+model:
+  type: sparse_voxelized_fluid_cnn
+  architecture: v3_4
+  num_input_features: 1
+  grid_size:
+  - 2048
+  - 2048
+  - 2048
+  build_method: build_model
+  summary: true
+train_pipeline:
+  batch_size: 1
+  buffer_size_factor: 100
+  data_augmentation: false
+  debug_mode: false
+val_pipeline:
+  batch_size: 1
+  debug_mode: false
+jobs:
+- name: sparse_fluid_kfold_fold4
+  training:
+    method: custom_train_model_v2
+    train_id: v3_4_100000_1.50_0.1_0_4_20240907
+    num_epochs: 100
+    learning_rate: 0.001
+    patience_max: 100
+    device: cuda
+  fold_id: 4
+  sim_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/kfold3_hdp=1.73
+  mixed_dataset_dir: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/kfold3_hdp=1.73/sparse_regionwise_approach/datasets/dataset_100000_1.50_0.1_0_4
+  mixed_dataset_config: dataset_config_v2.yaml
+  dataset_configs:
+  - /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/ddb_3d_big_res/sparse_regionwise_approach/datasets/kfold3_hdp=1.73/dataset_100000_1.50_0.1_0/dataset_config_v2.yaml
+  - /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/inlet_collision_3d_big_res/sparse_regionwise_approach/datasets/kfold3_hdp=1.73/dataset_100000_1.50_0.1_0/dataset_config_v2.yaml
+  - /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/db_blocks_3d_big_res/sparse_regionwise_approach/datasets/kfold3_hdp=1.73/dataset_100000_1.50_0.1_0/dataset_config_v2.yaml
+  - /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/3D/big/inlet_vortex_3d_big_res/sparse_regionwise_approach/datasets/kfold3_hdp=1.73/dataset_100000_1.50_0.1_0/dataset_config_v2.yaml

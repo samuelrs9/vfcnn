@@ -1,0 +1,50 @@
+tensorflow:
+  run_eagerly: true
+manager:
+  type: sparse_regionwise
+  tasks:
+    boundary:
+      type: classification
+      labels:
+      - interior
+      - boundary
+      outputs: 2
+    normal:
+      type: regression
+      outputs: 3
+model:
+  type: sparse_voxelized_fluid_cnn
+  architecture: v3_4
+  num_input_features: 1
+  grid_size:
+  - 2048
+  - 2048
+  - 2048
+  build_method: build_model
+  summary: true
+train_pipeline:
+  batch_size: 1
+  buffer_size_factor: 100
+  data_augmentation: false
+  debug_mode: false
+val_pipeline:
+  batch_size: 1
+  debug_mode: false
+jobs:
+- name: sparse_static_kfold_fold4
+  training:
+    method: custom_train_model_v2
+    train_id: v3_4_10000_1.50_0.1_0_4
+    num_epochs: 100
+    learning_rate: 0.001
+    patience_max: 100
+    device: cuda
+  fold_id: 4
+  sim_path: /work1/Doutorado/data/3D/static/kfold3_hdp=2.0_cos
+  mixed_dataset_dir: /work1/Doutorado/data/3D/static/kfold3_hdp=2.0_cos/sparse_regionwise_approach/datasets/dataset_10000_1.50_0.1_0_4
+  mixed_dataset_config: dataset_config_v2.yaml
+  dataset_configs:
+  - /work1/Doutorado/data/3D/static/armadillo/sparse_regionwise_approach/datasets/kfold3_hdp=2.0/dataset_10000_1.50_0.1_0/dataset_config_v2.yaml
+  - /work1/Doutorado/data/3D/static/bunny/sparse_regionwise_approach/datasets/kfold3_hdp=2.0/dataset_10000_1.50_0.1_0/dataset_config_v2.yaml
+  - /work1/Doutorado/data/3D/static/dragon/sparse_regionwise_approach/datasets/kfold3_hdp=2.0/dataset_10000_1.50_0.1_0/dataset_config_v2.yaml
+  - /work1/Doutorado/data/3D/static/happy/sparse_regionwise_approach/datasets/kfold3_hdp=2.0/dataset_10000_1.50_0.1_0/dataset_config_v2.yaml

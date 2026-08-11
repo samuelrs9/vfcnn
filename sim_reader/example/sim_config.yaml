@@ -1,0 +1,32 @@
+simulation_properties:
+  dp: 0.1
+  h: 0.141421
+  dt: 0.01
+  mass: 10.0
+  dimensions: 2
+  limits:
+  - - 0.1
+    - 3.9
+  - - 0.1
+    - 4.5
+data:
+  sim_name: example
+  from: dualsphysics
+  frames_dir: frames
+  base_name: PartFluid
+  base_sep: _
+  extension: csv
+  header_lines: 3
+  initial_step: 0
+  final_step: 500
+  num_steps: 501
+  min_particles: 231
+  max_particles: 231
+  coords:
+  - Pos.x [m]
+  - Pos.z [m]
+  velocity:
+  - '[''Vel.x [m'
+  - s]','Vel.y [m
+  - s]','Vel.z [m
+  - s]']

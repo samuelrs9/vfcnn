@@ -1,0 +1,33 @@
+manager:
+  type: regionwise
+  tasks:
+    boundary:
+      type: classification
+      labels:
+      - interior
+      - boundary
+      outputs: 2
+    normal:
+      type: regression
+      outputs: 3
+  sim_path: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/paper/DDB_ressampled
+  dataset_config_file: /work1/disknvme0n1p2/home/samuel/Doutorado/voxel-fluid-net/data/paper/DDB_ressampled/regionwise_approach/datasets/dataset_31_9_3.10_0/dataset_config.yaml
+model:
+  type: factory
+  factory: NRCNN31.model_31_C4C4C4C4M2B_C8C8M2B_C16M2B_CT16B_CT8B_CT4B_C3_LN
+train_pipeline:
+  batch_size: 1024
+  buffer_size_factor: 10
+  data_augmentation: false
+  debug_mode: false
+val_pipeline:
+  batch_size: 1024
+  debug_mode: false
+jobs:
+- name: regionwise_boundary_normal
+  training:
+    train_id: 0
+    num_epochs: 15
+    learning_rate: 0.01
+    device: cuda
+    debug_mode: null

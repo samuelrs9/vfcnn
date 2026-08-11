@@ -1,0 +1,35 @@
+tensorflow:
+  gpu_memory_growth: true
+voxel_fluid:
+  tasks:
+    normal:
+      type: regression
+      outputs: 3
+  features:
+    occupancy: 1
+  approach: sparse_regionwise
+  search_radius: 1.5
+  grid_length: 0.1
+  enable_plot: false
+  coarse_prediction: null
+prediction:
+  batch_size: 100000
+  device: cuda
+  initial_step: PLACEHOLDER_INITIAL_STEP
+  final_step: PLACEHOLDER_FINAL_STEP
+  skip_steps: PLACEHOLDER_SKIP_STEPS
+  grid_offset: false
+  resolution_based_on_mean_distance: true
+  hdp: 1.73
+  post_processing:
+    extract_mesh: false
+    poisson_recon_path: null
+jobs:
+- name: PLACEHOLDER_NAME
+  sim_path: PLACEHOLDER_SIM_PATH
+  model_path: PLACEHOLDER_MODEL_PATH
+  sim_config: sim_config.yaml
+  model_config: model_config_v2.yaml
+  predict_id: PLACEHOLDER_PREDICT_ID
+  pred_dir: ./outputs
+  skip_if_exists: false

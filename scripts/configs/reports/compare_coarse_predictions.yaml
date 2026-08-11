@@ -1,0 +1,42 @@
+# Coarse Prediction Comparison Configuration
+# This configuration file defines coarse predictions to compare against ground truth
+
+# Prediction type to analyze (can be a pred section or measure section)
+# Examples:
+#   - pred_combined_product (prediction section with labels)
+#   - pred_density (prediction section with labels)
+#   - combined_measures (measure section - requires threshold)
+#   - density (measure section - requires threshold)
+prediction_type: pred_combined_product
+
+# Optional threshold (only needed if prediction_type is a measure section)
+# If not specified, will try to find threshold in corresponding pred section
+# threshold: 0.7
+
+# List of comparisons (each with GT and predictions)
+comparisons:
+  - gt_config_file: /work1/voxel-fluid-net/data/3D/simulations/db_blocks_3d_big_res/gt_config_hdp=1.73.yaml
+    pred_config_files:
+      - /work1/voxel-fluid-net/data/3D/simulations/db_blocks_3d_big_res/coarse_predictions/pred_all_2.0_0/pred_config.yaml
+  - gt_config_file: /work1/voxel-fluid-net/data/3D/simulations/ddb_3d_big_res/gt_config.yaml
+    pred_config_files:
+      - /work1/voxel-fluid-net/data/3D/simulations/ddb_3d_big_res/coarse_predictions/pred_all_2.0_0/pred_config.yaml
+  - gt_config_file: /work1/voxel-fluid-net/data/3D/simulations/fountain_3d_big_res/gt_config_hdp=2.0.yaml
+    pred_config_files:
+      - /work1/voxel-fluid-net/data/3D/simulations/fountain_3d_big_res/coarse_predictions/pred_all_2.0_0/pred_config.yaml
+  - gt_config_file: /work1/voxel-fluid-net/data/3D/simulations/inlet_collision_3d_big_res/gt_config_hdp=2.0.yaml
+    pred_config_files:
+      - /work1/voxel-fluid-net/data/3D/simulations/inlet_collision_3d_big_res/coarse_predictions/pred_all_2.0_0/pred_config.yaml
+  - gt_config_file: /work1/voxel-fluid-net/data/3D/simulations/inlet_vortex_3d_big_res/gt_config_hdp=1.73.yaml
+    pred_config_files:
+      - /work1/voxel-fluid-net/data/3D/simulations/inlet_vortex_3d_big_res/coarse_predictions/pred_all_2.0_0/pred_config.yaml
+
+  # Add more comparisons here
+  # - gt_config_file: /path/to/gt_config.yaml
+  #   pred_config_files:
+  #     - /path/to/pred_config1.yaml
+  #     - /path/to/pred_config2.yaml
+
+# Report configuration
+report:
+  output_path: ./reports/coarse_prediction_comparison

@@ -1,0 +1,11 @@
+sim_config_file: /work1/voxel-fluid-net/data/3D/simulations/db_blocks_3d_big_res/sim_config.yaml
+
+pred_config_files:
+  - /work1/voxel-fluid-net/data/3D/simulations/db_blocks_3d_big_res/sparse_regionwise_approach/predictions/pred_sparse_voxelized_fluid_cnn_v3_4_100000_1.50_0.10_0_2_kfold3/pred_config.yaml
+  - /work1/voxel-fluid-net/data/3D/simulations/db_blocks_3d_big_res/sparse_regionwise_approach/predictions/pred_sparse_voxelized_fluid_cnn_v3_4_100000_1.50_0.10_0_2_kfold3_no_coarse/pred_config.yaml
+
+report:
+  output_path: ./reports/classification_times_report
+  format: csv
+  plot_times: true
+  print_times: true

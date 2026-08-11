@@ -1,0 +1,18 @@
+# Caches
+__pycache__/
+.vscode/
+
+# Directories
+data/
+models/
+tf_kdtree/src/build
+outputs*
+
+
+# Files
+*.png
+*.zip
+*.ipynb
+*.csv
+*.pdf
+*.json

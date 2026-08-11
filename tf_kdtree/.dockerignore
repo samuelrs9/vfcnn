@@ -1,0 +1,5 @@
+src/build
+__pycache__
+*.pyc
+*.so
+libtf_nndistance.so
