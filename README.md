@@ -1,5 +1,10 @@
-# voxel-fluid-net
-Convolutional neural network designed to handle voxelized fluid simulation.
+# VFCNN: Voxel Fluid Convolutional Neural Network
+
+## Abstract
+
+Advancements in computational power have increasingly enabled the application of deep learning to enhance fluid simulation pipelines. In this work, we introduce a multi-task deep learning framework designed to simultaneously address boundary particle detection and normal vector estimation in SPH fluids. Our primary contribution is the Sparse Voxel Fluid Convolutional Neural Network (Sparse VFCNN), an architecture that leverages spatially sparse 3D convolutions to overcome the computational bottlenecks associated with traditional volumetric networks. Developed as an optimized successor to an initial dense architecture (Dense VFCNN), the sparse variant achieves competitive performance with a significant reduction in processing time. Our results demonstrate that the Sparse VFCNN approximates the precision of state-of-the-art methods while providing unified outputs — a feature essential for consistent geometric representation in fluid simulations. Furthermore, the framework is agnostic to the ground-truth data source, allowing for seamless integration with various detection and estimation methods. By combining high efficiency with multi-task learning, the Sparse VFCNN offers a robust and versatile alternative for enhancing geometric fidelity in large-scale fluid simulation frameworks.
+
+**DOI:** [https://doi.org/10.1016/j.cag.2026.104723](https://doi.org/10.1016/j.cag.2026.104723)
 
 ## Quick Setup
 
